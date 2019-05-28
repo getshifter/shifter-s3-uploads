@@ -28,7 +28,6 @@ if ( ! class_exists('Aws\S3\S3Client') ) {
 	require_once( dirname( __FILE__ ) . '/aws.phar' );
 }
 
-define( 'S3_UPLOADS_AUTOENABLE', false );
 
 if ( getenv( 'SHIFTER_S3_UPLOADS' ) ) {
   define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) ); // define( 'S3_UPLOADS_BUCKET', 'my-bucket/my-folder' );
@@ -37,8 +36,10 @@ if ( getenv( 'SHIFTER_S3_UPLOADS' ) ) {
   define( 'S3_UPLOADS_REGION', getenv( 'SHIFTER_S3_UPLOADS_REGION' ) );
   define( 'S3_UPLOADS_BUCKET_URL', getenv( 'SHIFTER_S3_UPLOADS_BUCKET_URL' ) );
   define( 'S3_UPLOADS_OBJECT_ACL', 'private' );
-  define( 'S3_UPLOADS_AUTOENABLE', true );
-};
+} else {
+  define( 'S3_UPLOADS_AUTOENABLE', false );
+}
+;
 
 // TODO: Use token unless `ENV:SHIFTER_S3_UPLOADS_TOKEN`=NONE
 
