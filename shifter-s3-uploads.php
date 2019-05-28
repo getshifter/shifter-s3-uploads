@@ -23,8 +23,9 @@
  * Domain Path:       /languages
  */
 
-require dirname( __FILE__ ) . '/aws.phar';
-
+if ( ! class_exists('Aws\S3\S3Client') ) {
+	require_once( dirname( __FILE__ ) . '/aws.phar' );
+}
 
 define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) ); // define( 'S3_UPLOADS_BUCKET', 'my-bucket/my-folder' );
 define( 'S3_UPLOADS_KEY', getenv( 'SHIFTER_S3_UPLOADS_KEY' ) );
