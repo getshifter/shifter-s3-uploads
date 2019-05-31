@@ -23,16 +23,25 @@
  * Domain Path:       /languages
  */
 
+if ( ! class_exists('Aws\S3\S3Client') ) {
+  // Aws\Sdk::VERSION 3.95.0
+	require_once( dirname( __FILE__ ) . '/aws.phar' );
+}
 
-// Option 1.
-define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) ); // define( 'S3_UPLOADS_BUCKET', 'my-bucket/my-folder' );
-define( 'S3_UPLOADS_KEY', getenv( 'SHIFTER_S3_UPLOADS_KEY' ) );
-define( 'S3_UPLOADS_SECRET', getenv( 'SHIFTER_S3_UPLOADS_SECRET' ) );
-define( 'S3_UPLOADS_REGION', getenv( 'SHIFTER_S3_UPLOADS_REGION' ) );
-define( 'S3_UPLOADS_BUCKET_URL', getenv( 'SHIFTER_S3_UPLOADS_BUCKET_URL' ) );
 
-// Option 2.
-define( 'S3_UPLOADS_REGION', getenv( 'SHIFTER_S3_UPLOADS_REGION' ) );
-define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) ); // define( 'S3_UPLOADS_BUCKET', 'my-bucket/my-folder' );
-define( 'S3_UPLOADS_USE_INSTANCE_PROFILE', getenv( 'SHIFTER_S3_UPLOADS_USE_INSTANCE_PROFILE' ) );
-define( 'S3_UPLOADS_BUCKET_URL', getenv( 'SHIFTER_S3_UPLOADS_BUCKET_URL' ) );
+if ( getenv( 'SHIFTER_S3_UPLOADS' ) ) {
+  define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) ); // define( 'S3_UPLOADS_BUCKET', 'my-bucket/my-folder' );
+  define( 'S3_UPLOADS_KEY', getenv( 'SHIFTER_S3_UPLOADS_KEY' ) );
+  define( 'S3_UPLOADS_SECRET', getenv( 'SHIFTER_S3_UPLOADS_SECRET' ) );
+  define( 'S3_UPLOADS_REGION', getenv( 'SHIFTER_S3_UPLOADS_REGION' ) );
+  define( 'S3_UPLOADS_BUCKET_URL', getenv( 'SHIFTER_S3_UPLOADS_BUCKET_URL' ) );
+  define( 'S3_UPLOADS_OBJECT_ACL', 'private' );
+} else {
+  define( 'S3_UPLOADS_AUTOENABLE', false );
+}
+;
+
+// TODO: Use token unless `ENV:SHIFTER_S3_UPLOADS_TOKEN`=NONE
+
+
+// TODO: add task to upload and remove from local scripts
