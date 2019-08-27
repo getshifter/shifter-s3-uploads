@@ -7,14 +7,14 @@
  * to store S3 Uploads config in. Instead, we can store them in a ENV file.
  *
  * @link    https://www.getshifter.io
- * @since   1.0.0
+ * @since   0.1.0
  * @package Shifter
  *
  * @wordpress-plugin
  * Plugin Name:       Shifter S3 Uploads
  * Plugin URI:        https://github.com/getshifter/shifter-s3-uploads
  * Description:       Helper plugin for Shifter sites using S3 Uploads
- * Version:           1.0.0
+ * Version:           0.1.0
  * Author:            DigitalCube
  * Author URI:        https://www.getshifter.io
  * License:           GPL-2.0+
