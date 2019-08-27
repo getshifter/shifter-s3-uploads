@@ -1,0 +1,3 @@
+.git* export-ignore
+Makefile export-ignore
+aws-sdk-version.php export-ignore

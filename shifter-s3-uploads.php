@@ -24,7 +24,6 @@
  */
 
 if ( ! class_exists('Aws\S3\S3Client') ) {
-  // Aws\Sdk::VERSION 3.95.0
 	require_once( dirname( __FILE__ ) . '/aws.phar' );
 }
 
