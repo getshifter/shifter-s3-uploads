@@ -1,0 +1,19 @@
+name: create_archive
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: download sdk
+      run: make phar
+    - name: create archive
+      run: make archive
+    - uses: actions/upload-artifact@master
+      with:
+        name: shifter-s3-uploads.zip
+        path: shifter-s3-uploads.zip
