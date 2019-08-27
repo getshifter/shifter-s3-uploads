@@ -17,8 +17,9 @@ jobs:
     - name: upload
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GOPATH: /home/runner/go
       run: |
         export CREATE_EVENT_REF_TYPE=$(jq --raw-output .ref_type "$GITHUB_EVENT_PATH")
         export TAGNAME=$(jq --raw-output .ref "$GITHUB_EVENT_PATH")
         go get -u github.com/tcnksm/ghr
-        ghr -prerelease -replace ${TAGNAME} shifter-s3-uploads.zip
+        ${GOPATH}/bin/ghr -prerelease -replace ${TAGNAME} shifter-s3-uploads.zip
