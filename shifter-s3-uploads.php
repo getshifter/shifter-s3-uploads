@@ -14,7 +14,7 @@
  * Plugin Name:       Shifter S3 Uploads
  * Plugin URI:        https://github.com/getshifter/shifter-s3-uploads
  * Description:       Helper plugin for Shifter sites using S3 Uploads
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            DigitalCube
  * Author URI:        https://www.getshifter.io
  * License:           GPL-2.0+
@@ -35,10 +35,14 @@ if ( getenv( 'SHIFTER_S3_UPLOADS' ) ) {
   define( 'S3_UPLOADS_REGION', getenv( 'SHIFTER_S3_UPLOADS_REGION' ) );
   define( 'S3_UPLOADS_BUCKET_URL', getenv( 'SHIFTER_S3_UPLOADS_BUCKET_URL' ) );
   define( 'S3_UPLOADS_OBJECT_ACL', 'private' );
-  $shifter_s3_uploads_token = getenv( 'SHIFTER_S3_UPLOADS_TOKEN' );
 
-  if ($shifter_s3_uploads_token != 'NONE') {
-    define( 'S3_UPLOADS_TOKEN', $shifter_s3_uploads_token );
+  if ( getenv( 'SHIFTER_S3_UPLOADS_TOKEN' ) != 'NONE' ) {
+    // https://github.com/humanmade/S3-Uploads#temporary-session-tokens
+    // Filter S3 Uploads params.
+    add_filter( 's3_uploads_s3_client_params', function ( $params ) {
+      $params['credentials']['token'] = getenv( 'SHIFTER_S3_UPLOADS_TOKEN');
+      return $params;
+    } );
   };
 } else {
   define( 'S3_UPLOADS_AUTOENABLE', false );
