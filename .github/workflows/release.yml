@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: download sdk
-      run: make phar
     - name: create archive
       run: make archive
     - name: upload

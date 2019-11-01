@@ -1,4 +1,4 @@
-files := shifter-s3-uploads.zip shifter-s3-uploads.php AWS_SDK_VERSION.txt aws.phar
+files := shifter-s3-uploads.php
 
 .PHONY: phar archive clean
 

@@ -14,7 +14,7 @@
  * Plugin Name:       Shifter S3 Uploads
  * Plugin URI:        https://github.com/getshifter/shifter-s3-uploads
  * Description:       Helper plugin for Shifter sites using S3 Uploads
- * Version:           1.0.1
+ * Version:           1.1.0
  * Author:            DigitalCube
  * Author URI:        https://www.getshifter.io
  * License:           GPL-2.0+
@@ -22,11 +22,6 @@
  * Text Domain:       shifter-s3-uploads
  * Domain Path:       /languages
  */
-
-if ( ! class_exists('Aws\S3\S3Client') ) {
-	require_once( dirname( __FILE__ ) . '/aws.phar' );
-}
-
 
 if ( getenv( 'SHIFTER_S3_UPLOADS' ) ) {
   define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) );
