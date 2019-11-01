@@ -14,7 +14,7 @@
  * Plugin Name:       Shifter S3 Uploads
  * Plugin URI:        https://github.com/getshifter/shifter-s3-uploads
  * Description:       Helper plugin for Shifter sites using S3 Uploads
- * Version:           0.1.3
+ * Version:           1.0.0
  * Author:            DigitalCube
  * Author URI:        https://www.getshifter.io
  * License:           GPL-2.0+
@@ -29,18 +29,18 @@ if ( ! class_exists('Aws\S3\S3Client') ) {
 
 
 if ( getenv( 'SHIFTER_S3_UPLOADS' ) ) {
-  define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) ); // define( 'S3_UPLOADS_BUCKET', 'my-bucket/my-folder' );
+  define( 'S3_UPLOADS_BUCKET', getenv( 'SHIFTER_S3_UPLOADS_BUCKET' ) );
   define( 'S3_UPLOADS_KEY', getenv( 'SHIFTER_S3_UPLOADS_KEY' ) );
   define( 'S3_UPLOADS_SECRET', getenv( 'SHIFTER_S3_UPLOADS_SECRET' ) );
   define( 'S3_UPLOADS_REGION', getenv( 'SHIFTER_S3_UPLOADS_REGION' ) );
   define( 'S3_UPLOADS_BUCKET_URL', getenv( 'SHIFTER_S3_UPLOADS_BUCKET_URL' ) );
   define( 'S3_UPLOADS_OBJECT_ACL', 'private' );
+  $shifter_s3_uploads_token = getenv( 'SHIFTER_S3_UPLOADS_TOKEN' );
+
+  if ($shifter_s3_uploads_token != 'NONE') {
+    define( 'S3_UPLOADS_TOKEN', $shifter_s3_uploads_token );
+  };
 } else {
   define( 'S3_UPLOADS_AUTOENABLE', false );
 }
 ;
-
-// TODO: Use token unless `ENV:SHIFTER_S3_UPLOADS_TOKEN`=NONE
-
-
-// TODO: add task to upload and remove from local scripts
